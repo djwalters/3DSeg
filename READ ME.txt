@@ -1,0 +1,4 @@
+Batch Friendly Version of Scan2Cut. Coded to run on my linux file hierarchy.
+
+Scan2Cut is a function. Graphical Output has been removed from functions. Stl file output is optional.
+batch file runs Scan2Cut multiple times, writes .txt files

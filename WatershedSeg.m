@@ -49,7 +49,6 @@ L = watershed(imhmin(D,.5)); %Adjust number after D for segmentation limit
 
 %% Create bonds array- 1 where there is a bond voxel, 0 elsewhere
 bonds=false(size(L));
-% bonds=logical(bonds); %converts bonds array to binary, save space
 
 for i=1:length(L(:,1,1)); %These 5 nested loops create an array of bonds in positions where L=0 and bw=1
     for j=1:length(L(1,:,1));

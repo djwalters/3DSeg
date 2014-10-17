@@ -13,7 +13,7 @@ bonds(:,Size(2)-1:Size(2),:)=0;
 bonds(:,:,Size(3)-1:Size(3))=0;
 
 CCbonds=bwconncomp(bonds);%Lists voxels in each bond, 
-GrnStat=regionprops(CCgrains,'Centroid'); %Stores centroids of each grain
+% GrnStat=regionprops(CCgrains,'Centroid'); %Stores centroids of each grain
 % assignin('base','GrnStatDebug',GrnStat)
 % assignin('base','CCbondsDebug',CCbonds) %Writes a copy of CCbonds to workspace in case function doesn't finish
 %% Identify neighbor grains of each bond and top/bottom relationship for flow directions

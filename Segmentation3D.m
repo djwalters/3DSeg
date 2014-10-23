@@ -1,4 +1,4 @@
-function [Data]=Segmentation3D(runtype,imsize,FileOutFlag,figflag,FileIO) 
+function [Data]=Segmentation3D(runtype,imsize,FileIO,sensitivity,FileOutFlag,figflag) 
 % Function FabricTensor.m takes an image stack with cross sections parallel
 % to the snow surface and performs 3-D segmentation finding bonds and grain
 % pairs.  
@@ -105,7 +105,7 @@ fprintf('%s\n\n',datestr(now,'mmmm dd, yyyy HH:MM:SS AM'))
 
 %% Perform Watershed Segmentation
 fprintf('Begin watershed segmentation.\n')
-[bonds,CCgrains,labelgrn,bw]=WatershedSeg(bw,figflag); %Performs watershed segmentation, outputs bond and grain data
+[bonds,CCgrains,labelgrn,bw]=WatershedSeg(bw,figflag,sensitivity); %Performs watershed segmentation, outputs bond and grain data
 fprintf('Segmentation Complete!\n')
 fprintf('%s\n\n',datestr(now,'mmmm dd, yyyy HH:MM:SS AM'))
 

@@ -1,4 +1,4 @@
-function [bonds,CCgrains,labelgrn,bw]=WatershedSeg(bw,figflag)
+function [bonds,CCgrains,labelgrn,bw]=WatershedSeg(bw,figflag,sensitivity)
 
 %% Watershed Segmentation of objects (borrowed heavily from MATLAB help/webpage)
 % http://www.mathworks.com/help/images/ref/watershed.html
@@ -33,7 +33,7 @@ D=-D;
 
 %% Perform Watershed Segmentation
 % sprintf('Beginning Watershed Segmentation.')
-L = watershed(imhmin(D,.5)); %Adjust number after D for segmentation limit
+L = watershed(imhmin(D,sensitivity)); %Adjust number after D for segmentation limit
 %L=watershed(D);
 %% Plotting for segmented objects- multicolor grains
 

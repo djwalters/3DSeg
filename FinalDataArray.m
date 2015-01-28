@@ -22,12 +22,13 @@ parfor i=1:size(BondStat,1)
     BondCent(i,:) = BondStat(i).Centroid;
 end
 
-Data = zeros(size(GrainBondSets,1),24);
+Data = zeros(size(GrainBondSets,1),25);
 Data(:,1) = GrainBondSets(:,1); %List bond number
 Data(:,9) = GrainBondSets(:,2); %List grain number 1 of pair bonded to associated bond
 Data(:,17) = GrainBondSets(:,3); %List grain number 2 of pair bonded to associated bond
 Data(:,5) = Area;              %List bond area
 Data(:,6:8) = Normal;         %List bond noraml unit vector (x,y,z)
+Data(:,25) = 1:size(Data,1);    %Generates listing of row number
 
 for i=1:size(Data,1)
     Data(i,2:4) = BondCent(Data(i,1),:);        %Write centroid [x y z] in following columns associated with bond number

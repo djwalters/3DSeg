@@ -26,8 +26,8 @@ for y=1:CCbonds.ImageSize(1)
         for z=1:CCbonds.ImageSize(3)
             if Bond(y,x,z)==1 %Creating X,Y,Z column arrays with coords of bond voxels
                 n=n+1;
-                X(n)=x;
-                Y(n)=y;
+                X(n)=y;
+                Y(n)=x;
                 Z(n)=z;
             end
         end
@@ -49,8 +49,12 @@ else  %If plane is not neatly vertical/horizontal, bring out the big guns...Best
     ABC=[sum(X.*X),sum(X.*Y),sum(X);sum(X.*Y),sum(Y.*Y),sum(Y);sum(X),sum(Y),length(X)]\...
         [sum(X.*Z);sum(Y.*Z);sum(Z)]; %Least squares equation for a plane
     %Unit Normal
-    normal=[ABC(1),ABC(2),-1]; %A normal to the plane
-    unorm=normal/norm(normal); %Unit normal to the plane
+    normal=[-ABC(1)/sqrt(ABC(1)^2+ABC(2)^2+(-1)^2),...
+        -ABC(2)/sqrt(ABC(1)^2+ABC(2)^2+(-1)^2),...
+        1/sqrt(ABC(1)^2+ABC(2)^2+(-1)^2)]; %A normal to the plane
+    %     normal = ABC; %Normal Vector
+    %     unorm=normal/norm(normal); %Unit normal to the plane
+    unorm = normal;
     
     %Thin the surface
       

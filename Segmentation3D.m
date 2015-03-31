@@ -113,7 +113,7 @@ clear bw
 
 %% Calculate Effective Grain Radius for Individual Grains
 fprintf('Begin grain radius calculation.\n')
-GrainRadius = InscribedSphere(CCgrains)
+GrainRadius = InscribedSphere(CCgrains);
 fprintf('Grain radius calculation complete!\n')
 fprintf('%s\n\n',datestr(now,'mmmm dd, yyyy HH:MM:SS AM'))
 

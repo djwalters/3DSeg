@@ -5,60 +5,65 @@
 %diam is a scalar, Center1 and Center2 must be row matrices giving
 %coordinates of sphere centers. All dimensions in voxels.
 
-diam=100  %Enter sphere diameter
-Center1=[40,40,40] %Center of sphere 1 as an array [x1, y1, z1]
-Center2=[90,40,90] %Center of sphere 2 as an array [x2, y2, z2]
-Center3=[90,40,90] %And so on
-Center4=[90,40,90] %And so forth
+diam=40;  %Enter sphere diameter
+Center{1}=[25,25,25]; %Center of sphere 1 as an array [x1, y1, z1]
+Center{2}=[25,25,60]; %Center of sphere 2 as an array [x2, y2, z2]
+Center{3}=[60,25,25]; %And so on
+Center{4}=[60,25,60]; %And so forth
+Center{5}=[25,60,25]; 
+Center{6}=[25,60,60]; 
+Center{7}=[60,60,25]; 
+Center{8}=[60,60,60];
 
 D=logical(zeros(130,130,130)); %Blank space (ones are empty space in this binarization)
 
-    for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 1st sphere
-        for j = 1:length(D(1,:,1))
-            for k = 1:length(D(1,1,:))
-                if sqrt((i-Center1(1))^2+(j-Center1(2))^2+(k-Center1(3))^2)<=(diam/2)
-                    D(i,j,k)=1;
-                end
+for m = 1:length(Center)
+for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 1st sphere
+    for j = 1:length(D(1,:,1))
+        for k = 1:length(D(1,1,:))
+            if sqrt((i-Center{m}(1))^2+(j-Center{m}(2))^2+(k-Center{m}(3))^2)<=(diam/2)
+                D(i,j,k)=1;
             end
         end
     end
-    
-    for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 2nd sphere
-        for j = 1:length(D(1,:,1))
-            for k = 1:length(D(1,1,:))
-                if sqrt((i-Center2(1))^2+(j-Center2(2))^2+(k-Center2(3))^2)<=(diam/2)
-                    D(i,j,k)=1;
-                end
-            end
-        end
-    end
-    
-     for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 3rd sphere
-        for j = 1:length(D(1,:,1))
-            for k = 1:length(D(1,1,:))
-                if sqrt((i-Center3(1))^2+(j-Center3(2))^2+(k-Center3(3))^2)<=(diam/2)
-                    D(i,j,k)=1;
-                end
-            end
-        end
-     end
-    
-      for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 4th sphere
-        for j = 1:length(D(1,:,1))
-            for k = 1:length(D(1,1,:))
-                if sqrt((i-Center4(1))^2+(j-Center4(2))^2+(k-Center4(3))^2)<=(diam/2)
-                    D(i,j,k)=1;
-                end
-            end
-        end
-    end
-    
-     
+end
+% 
+% for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 2nd sphere
+%     for j = 1:length(D(1,:,1))
+%         for k = 1:length(D(1,1,:))
+%             if sqrt((i-Center2(1))^2+(j-Center2(2))^2+(k-Center2(3))^2)<=(diam/2)
+%                 D(i,j,k)=1;
+%             end
+%         end
+%     end
+% end
+% 
+% for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 3rd sphere
+%     for j = 1:length(D(1,:,1))
+%         for k = 1:length(D(1,1,:))
+%             if sqrt((i-Center3(1))^2+(j-Center3(2))^2+(k-Center3(3))^2)<=(diam/2)
+%                 D(i,j,k)=1;
+%             end
+%         end
+%     end
+% end
+% 
+% for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 4th sphere
+%     for j = 1:length(D(1,:,1))
+%         for k = 1:length(D(1,1,:))
+%             if sqrt((i-Center4(1))^2+(j-Center4(2))^2+(k-Center4(3))^2)<=(diam/2)
+%                 D(i,j,k)=1;
+%             end
+%         end
+%     end
+% end
+
+end
  figure
         isosurface(D,0.99), axis equal,
         camlight, lighting gouraud, title('3D Object')
         
  for i=1:length(D(1,1,:)) %For all layers in stack
-     Filename=strcat('/home/tonyl/SimpleBIN/Im',sprintf('%04d',i),'.tif');
+     Filename=strcat('C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\Images\',sprintf('%04d',i),'.tif');
      imwrite(D(:,:,i),Filename)
  end

@@ -49,7 +49,7 @@ function [Data]=Segmentation3D(runtype,imsize,FileIO,sensitivity,FileOutFlag,fig
 %
 % Author: Anthony Lebaron, Montana State University
 %   Edited by: David J. Walters, Montana State University
-matlabpool open 8
+% matlabpool open 2
 if exist('figflag','var') == 0
     figflag = 0;
 end
@@ -64,12 +64,12 @@ end
 switch runtype
     case 'desktop'
         % Linux File Path
-        [FirstFileName,FirstPathName] = uigetfile('/home/david.walters/PhD Work/MicroMechanics/CT Images/*.*'...
-            ,'Select First Image in Stack');
+%         [FirstFileName,FirstPathName] = uigetfile('/home/david.walters/PhD Work/MicroMechanics/CT Images/*.*'...
+%             ,'Select First Image in Stack');
         
         % Windows File Path
-        % [FirstFileName,FirstPathName] = uigetfile('C:\Doctoral Researach\Linux FTP Mirror\PhD Work\MicroMechanics\CT Images\*.*'...
-        %     ,'Select First Image in Stack');
+        [FirstFileName,FirstPathName] = uigetfile('C:\Doctoral Researach\Linux FTP Mirror\PhD Work\MicroMechanics\CT Images\*.*'...
+            ,'Select First Image in Stack');
         
         [LastFileName] = uigetfile([FirstPathName,'*.*'],'Select Last Image in Stack');
         [~,FirstInName,ext] = fileparts(FirstFileName);
@@ -138,7 +138,8 @@ fprintf('%s\n\n',datestr(now,'mmmm dd, yyyy HH:MM:SS AM'))
 % Generates .csv output to specified folder in OutFilePath
 if FileOutFlag == 1
 %     Linux File Path
-    OutFilePath = '/home/david.walters/PhD Work/MicroMechanics/Matlab 3D Segmentation Results/';
+%     OutFilePath = '/home/david.walters/PhD Work/MicroMechanics/Matlab 3D Segmentation Results/';
+    OutFilePath = 'C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\';
 %     Windows File Path
 %     OutFilePath = 'C:\Doctoral Researach\Linux FTP Mirror\PhD Work\MicroMechanics\Matlab 3D Segmentation Results\';
     header = ['Bond(Idx),BCx(pix),BCy(pix),BCz(pix)'...
@@ -159,5 +160,5 @@ end
 % csvwrite('/home/david.walters/PhD Work/MicroMechanics/Edited Code/Output/BondGrainData.csv',Data)
 %% Construct Fabric Tensor
 
-matlabpool close
+% matlabpool close
 end

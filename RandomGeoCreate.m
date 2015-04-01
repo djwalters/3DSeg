@@ -4,24 +4,30 @@
 %Creates 3 spheres to test skeletonization algorithms
 %diam is a scalar, Center1 and Center2 must be row matrices giving
 %coordinates of sphere centers. All dimensions in voxels.
+% clear all;
+% close all; 
+% clc;
+delete('C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\Images\*.tif')
 
-diam=20;  %Enter sphere diameter
-Center{1}=[30,30,30]; %Center of sphere 1 as an array [x1, y1, z1]
-Center{2}=[30,30,60]; %Center of sphere 2 as an array [x2, y2, z2]
-Center{3}=[40,30,40]; %And so on
-Center{4}=[40,30,70]; %And so forth
-Center{5}=[30,60,30]; 
-Center{6}=[30,60,60]; 
-Center{7}=[40,60,40]; 
-Center{8}=[40,60,70];
+dims = 50;
+a = 2;
+b = 10;
+n = 200;
+rng('shuffle');
+diams = randi([a b],1,n);
 
-D=logical(zeros(130,130,130)); %Blank space (ones are empty space in this binarization)
+for i = 1:length(diams)
+    Center{i} = [randi([1 dims],1,1),randi([1 dims],1,1),randi([1 dims],1,1)];
+end
+
+
+D=logical(zeros(dims,dims,dims)); %Blank space (ones are empty space in this binarization)
 
 for m = 1:length(Center)
 for i = 1:length(D(:,1,1)) %This for statement encapsulates creation of 1st sphere
     for j = 1:length(D(1,:,1))
         for k = 1:length(D(1,1,:))
-            if sqrt((i-Center{m}(1))^2+(j-Center{m}(2))^2+(k-Center{m}(3))^2)<=(diam/2)
+            if sqrt((i-Center{m}(1))^2+(j-Center{m}(2))^2+(k-Center{m}(3))^2)<=(diams(m)/2)
                 D(i,j,k)=1;
             end
         end

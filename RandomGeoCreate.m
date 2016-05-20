@@ -30,7 +30,7 @@ function RandomGeoCreate(figflag, dims, mindiam, maxdiam, numspheres)
 % clc;
 
 % Deletes images in current folder for saving
-delete('C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\Images\*.tif')
+delete('C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\Images\*.bmp')
 
 % Sets Random Number Generator seed to the current PC time clock for a
 % different seed on every run
@@ -73,6 +73,6 @@ end
 
 % Save 3-D array into a stack of 2-D binary images
 for i=1:length(D(1,1,:))
-    Filename=strcat('C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\Images\',sprintf('%04d',i),'.tif');
+    Filename=strcat('C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\Images\',sprintf('S%04d',i),'.bmp');
     imwrite(D(:,:,i),Filename)
 end

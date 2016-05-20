@@ -139,7 +139,7 @@ fprintf('%s\n\n',datestr(now,'mmmm dd, yyyy HH:MM:SS AM'))
 if FileOutFlag == 1
 %     Linux File Path
 %     OutFilePath = '/home/david.walters/PhD Work/MicroMechanics/Matlab 3D Segmentation Results/';
-    OutFilePath = 'C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Spheres\';
+    OutFilePath = 'C:\Users\David\Documents\MSU Research\Doctoral Work\Mechanical Testing\Radiation Recrystallization\PhD Work\Tall Ellipses\';
 %     Windows File Path
 %     OutFilePath = 'C:\Doctoral Researach\Linux FTP Mirror\PhD Work\MicroMechanics\Matlab 3D Segmentation Results\';
     header = ['Bond(Idx),BCx(pix),BCy(pix),BCz(pix)'...

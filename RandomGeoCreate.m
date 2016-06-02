@@ -26,7 +26,7 @@ function RandomGeoCreate(figflag, dims, mindiam, maxdiam, numspheres)
 
 
 % clear all;
-% close all; 
+% close all;
 % clc;
 
 % Deletes images in current folder for saving
@@ -49,8 +49,24 @@ end
 % Generate a 3-D array of all zeros to start
 D=false(dims,dims,dims); %Blank space (ones are empty space in this binarization)
 
+step = 0;
+steps = length(Center);
+
+h = waitbar(0,'1','Name','Please wait, generating microstructure...',...
+    'CreateCancelBtn',...
+    'setappdata(gcbf,''canceling'',1)');
+
+setappdata(h,'canceling',0)
 % Loops which change voxels to 1's if located where a sphere is positioned
 for m = 1:length(Center)
+    % Check for Cancel button press
+    if getappdata(h,'canceling')
+        break
+    end
+    step = step + 1;
+    waitbar(step / steps, h,sprintf(...
+        'Please wait, generating microstructure... %12.1f%%',...
+        (step/steps)*100))
     for i = 1:length(D(:,1,1))
         for j = 1:length(D(1,:,1))
             for k = 1:length(D(1,1,:))
@@ -60,10 +76,10 @@ for m = 1:length(Center)
             end
         end
     end
-   
+    
     
 end
-
+delete(h)
 % Generate a figure of random geometry if figflag == 1
 if figflag == 1
     figure
